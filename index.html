@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Saddles Factory Control Tower</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark">S</div>
+          <div>
+            <div class="brand-name">Saddles</div>
+            <div class="brand-subtitle">Factory Control Tower</div>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="dashboard">
+            <span class="nav-icon">DB</span>
+            Dashboard
+          </button>
+          <button class="nav-item" data-view="masters">
+            <span class="nav-icon">MS</span>
+            Masters
+          </button>
+          <button class="nav-item" data-view="inventory">
+            <span class="nav-icon">IN</span>
+            Inventory
+          </button>
+          <button class="nav-item" data-view="production">
+            <span class="nav-icon">PR</span>
+            Production
+          </button>
+          <button class="nav-item" data-view="reports">
+            <span class="nav-icon">RP</span>
+            Reports
+          </button>
+          <button class="nav-item" data-view="quality">
+            <span class="nav-icon">QC</span>
+            Quality
+          </button>
+          <button class="nav-item" data-view="dispatch">
+            <span class="nav-icon">DS</span>
+            Dispatch
+          </button>
+          <button class="nav-item" data-view="traceability">
+            <span class="nav-icon">TR</span>
+            Traceability
+          </button>
+        </nav>
+
+        <div class="pilot-card">
+          <div class="pilot-label">Factory Scope</div>
+          <strong>Bangalore factory pilot</strong>
+          <span>Management demo focused on one live factory</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Lean Clickable MVP</p>
+            <h1 id="view-title">Management Dashboard</h1>
+          </div>
+          <div class="top-actions">
+            <span class="factory-chip">Bangalore Factory</span>
+            <button class="ghost-button" id="run-demo">Run Demo Flow</button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="status-strip">
+            <article>
+              <span>Today's plan</span>
+              <strong>2,160</strong>
+              <small>seat covers</small>
+            </article>
+            <article>
+              <span>Actual output</span>
+              <strong id="actual-output">1,824</strong>
+              <small>84.4% complete</small>
+            </article>
+            <article>
+              <span>WIP bundles</span>
+              <strong>318</strong>
+              <small>across 5 operations</small>
+            </article>
+            <article>
+              <span>Dispatch ready</span>
+              <strong>426</strong>
+              <small>3 OEM schedules</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel control-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Live Factory Flow</h2>
+                  <p>One work order moving from material receipt to dispatch.</p>
+                </div>
+                <span class="status-pill good">Healthy</span>
+              </div>
+              <div class="flow-rail" id="flow-rail"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Exception Board</h2>
+                  <p>Items that need management attention.</p>
+                </div>
+              </div>
+              <div class="exception-list">
+                <button class="exception-item" data-view-target="quality">
+                  <span class="severity warn">QC</span>
+                  <div>
+                    <strong>18 rework pieces on WO-BLR-2409</strong>
+                    <small>Reason: seam alignment, operator retraining suggested</small>
+                  </div>
+                </button>
+                <button class="exception-item" data-view-target="inventory">
+                  <span class="severity risk">ST</span>
+                  <div>
+                    <strong>Black vinyl below reorder level</strong>
+                    <small>Available: 1.8 days, open PO due tomorrow</small>
+                  </div>
+                </button>
+                <button class="exception-item" data-view-target="dispatch">
+                  <span class="severity info">AS</span>
+                  <div>
+                    <strong>ASN file waiting for Toyota template approval</strong>
+                    <small>Sample generated for management review</small>
+                  </div>
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Bangalore Performance KPIs</h2>
+                <p>Factory health pulled into one management view.</p>
+              </div>
+              <button class="ghost-button compact" data-view-target="reports">Open Reports</button>
+            </div>
+            <div class="kpi-grid" id="bangalore-kpis"></div>
+          </section>
+
+          <div class="wide-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Bangalore Factory Snapshot</h2>
+                <button class="ghost-button compact" data-view-target="production">Open WIP</button>
+              </div>
+              <div class="plant-table">
+                <div class="table-row table-head">
+                  <span>Line</span><span>Plan</span><span>Actual</span><span>Scan %</span><span>Status</span>
+                </div>
+                <div class="table-row">
+                  <span>Line A - Front Covers</span><span>720</span><span>654</span><span>97%</span><span class="status-pill good">On track</span>
+                </div>
+                <div class="table-row">
+                  <span>Line B - Rear Covers</span><span>840</span><span>712</span><span>96%</span><span class="status-pill warn">Watch</span>
+                </div>
+                <div class="table-row">
+                  <span>Line C - Steering/Knob</span><span>600</span><span>466</span><span>94%</span><span class="status-pill neutral">Recovering</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Yield By Roll</h2>
+                <button class="ghost-button compact" data-view-target="traceability">Trace FG</button>
+              </div>
+              <div class="yield-stack">
+                <div><span>ROLL-LTH-8842</span><meter min="0" max="100" value="87"></meter><strong>87%</strong></div>
+                <div><span>ROLL-VNL-1951</span><meter min="0" max="100" value="82"></meter><strong>82%</strong></div>
+                <div><span>ROLL-FAB-3320</span><meter min="0" max="100" value="79"></meter><strong>79%</strong></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="wide-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Top 3 Issues Today</h2>
+              </div>
+              <div class="issue-list">
+                <div class="issue-row"><strong>Seam alignment</strong><span>18 rework pcs</span><small>Double stitch operation, Line B</small></div>
+                <div class="issue-row"><strong>Leather yield dip</strong><span>79%</span><small>ROLL-FAB-3320 below target</small></div>
+                <div class="issue-row"><strong>Dispatch ASN pending</strong><span>1 file</span><small>Template awaiting approval</small></div>
+              </div>
+            </section>
+
+            <section class="panel action-panel">
+              <div class="panel-heading">
+                <h2>Suggested Action</h2>
+                <button class="ghost-button compact" data-view-target="reports">Review Details</button>
+              </div>
+              <p>Hold first-piece approval for double stitch rear cover style, assign senior operator for the next 50 pieces, and check needle/thread setup before restarting Line B.</p>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="masters">
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Master Data Approval</h2>
+                  <p>Admin owner: Amol Padival, Director.</p>
+                </div>
+                <button class="primary-button">Add Master</button>
+              </div>
+              <div class="approval-list">
+                <div class="approval-row">
+                  <div><strong>BOM-SEAT-HYX-BLK</strong><small>Hyundai rear seat cover, black trim</small></div>
+                  <span class="status-pill good">Approved</span>
+                </div>
+                <div class="approval-row">
+                  <div><strong>ROUTE-CUT-SEW-ASM-QC</strong><small>Standard 4-op routing</small></div>
+                  <span class="status-pill good">Approved</span>
+                </div>
+                <div class="approval-row">
+                  <div><strong>SCRAP-SEAM-MISALIGN</strong><small>Reason code for sewing QC</small></div>
+                  <span class="status-pill warn">Pending</span>
+                </div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>BOM Preview</h2>
+              </div>
+              <div class="bom-card">
+                <strong>FG: SC-HYX-BLK-REAR</strong>
+                <div class="bom-line"><span>Leather black roll</span><b>1.85 sq m</b></div>
+                <div class="bom-line"><span>Thread black</span><b>32 m</b></div>
+                <div class="bom-line"><span>Foam backing</span><b>1 set</b></div>
+                <div class="bom-line"><span>Zip/fasteners</span><b>1 kit</b></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="inventory">
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>GRN And Roll Labels</h2>
+                  <p>Receive roll, inspect, print QR, issue to cutting.</p>
+                </div>
+                <button class="primary-button" id="print-label">Print Label</button>
+              </div>
+              <div class="roll-card">
+                <div class="qr-box">QR</div>
+                <div>
+                  <p class="eyebrow">GRN-BLR-26-00918</p>
+                  <h3>ROLL-LTH-8842</h3>
+                  <p>Supplier lot SL-4821 - Black leather - 52.5 sq m - Shade A2</p>
+                  <span class="status-pill good">Incoming QC passed</span>
+                </div>
+              </div>
+              <div class="ledger">
+                <div><span>GRN receipt</span><strong>+52.5 sq m</strong></div>
+                <div><span>Issue to cutting</span><strong>-18.4 sq m</strong></div>
+                <div><span>Offcut return</span><strong>+2.1 sq m</strong></div>
+                <div><span>Available balance</span><strong>36.2 sq m</strong></div>
+              </div>
+            </section>
+            <section class="panel print-agent">
+              <div class="panel-heading">
+                <h2>Local Print Gateway</h2>
+                <span class="status-pill good">Online</span>
+              </div>
+              <div class="agent-screen" id="agent-screen">
+                <span>BLR-PRINT-01</span>
+                <strong>Ready for ZPL / TSPL / PDF jobs</strong>
+                <small>Last label printed 2 min ago</small>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="production">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Work Order WO-BLR-2409</h2>
+                <p>Hyundai black rear seat cover - 720 pcs - due today.</p>
+              </div>
+              <button class="primary-button" id="scan-next">Scan Next Step</button>
+            </div>
+            <div class="kanban" id="kanban"></div>
+          </div>
+
+          <div class="wide-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Stitching Operations</h2>
+                  <p>Style-wise operation control for Bangalore stitching lines.</p>
+                </div>
+              </div>
+              <div class="stitch-grid" id="stitching-styles"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Style Sheet</h2>
+                  <p>SC-HYX-BLK-REAR stitching specification.</p>
+                </div>
+                <span class="status-pill good">Approved</span>
+              </div>
+              <div class="style-sheet">
+                <div><span>Primary stitch</span><strong>Double stitch</strong></div>
+                <div><span>Thread</span><strong>Black bonded nylon T-70</strong></div>
+                <div><span>Needle</span><strong>Nm 110 leather point</strong></div>
+                <div><span>Seam allowance</span><strong>8 mm</strong></div>
+                <div><span>SPI</span><strong>5.5 stitches/inch</strong></div>
+                <div><span>QC points</span><strong>Tension, alignment, skipped stitch, trim match</strong></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="reports">
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Report Center</h2>
+                <p>Bangalore production, WIP, quality, material, dispatch, and productivity reports.</p>
+              </div>
+            </div>
+            <div class="filter-bar">
+              <button class="filter-chip active">Today</button>
+              <button class="filter-chip">Shift A</button>
+              <button class="filter-chip">Line B</button>
+              <button class="filter-chip">WO-BLR-2409</button>
+              <button class="filter-chip">SC-HYX-BLK-REAR</button>
+            </div>
+            <div class="report-grid" id="report-cards"></div>
+          </section>
+
+          <div class="wide-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Detailed Production Report</h2>
+              </div>
+              <div class="report-table">
+                <div class="report-row report-head"><span>Area</span><span>Plan</span><span>Actual</span><span>Gap</span><span>Note</span></div>
+                <div class="report-row"><span>Cutting</span><span>720</span><span>720</span><span>0</span><span>Material ready</span></div>
+                <div class="report-row"><span>Stitching</span><span>720</span><span>654</span><span>-66</span><span>18 rework pcs</span></div>
+                <div class="report-row"><span>Assembly</span><span>650</span><span>612</span><span>-38</span><span>Waiting on stitching</span></div>
+                <div class="report-row"><span>QC</span><span>600</span><span>582</span><span>-18</span><span>First-pass 94.2%</span></div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Ways To Improve</h2>
+              </div>
+              <div class="improvement-list" id="improvement-actions"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="quality">
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Final QC Checklist</h2>
+                <span class="status-pill warn">18 rework</span>
+              </div>
+              <div class="checklist">
+                <label><input type="checkbox" checked> Stitch tension within tolerance</label>
+                <label><input type="checkbox" checked> Trim colour matches schedule</label>
+                <label><input type="checkbox" checked> Label position verified</label>
+                <label><input type="checkbox"> Seam alignment exception captured</label>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>NCR Lite</h2>
+              </div>
+              <div class="ncr-box">
+                <strong>NCR-BLR-26-0031</strong>
+                <p>18 pcs moved to rework for seam alignment. Root cause pending supervisor review.</p>
+                <button class="ghost-button compact">Assign CAPA</button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="dispatch">
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Dispatch Pack</h2>
+                  <p>Packing list, OEM label, ASN sample, GST placeholders.</p>
+                </div>
+                <button class="primary-button" id="generate-asn">Generate ASN</button>
+              </div>
+              <div class="dispatch-doc">
+                <div><span>Dispatch</span><strong>DSP-BLR-26-0144</strong></div>
+                <div><span>OEM</span><strong>Hyundai</strong></div>
+                <div><span>FG batch</span><strong>FG-BLR-7784</strong></div>
+                <div><span>Quantity</span><strong>426 pcs</strong></div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Integration Status</h2>
+              </div>
+              <div class="integration-list" id="integration-list">
+                <div><span>Tally export CSV</span><b>Ready</b></div>
+                <div><span>ASN file</span><b id="asn-state">Draft</b></div>
+                <div><span>E-invoice</span><b>Mock only</b></div>
+                <div><span>E-way bill</span><b>Mock only</b></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="traceability">
+          <div class="panel trace-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Traceability Search</h2>
+                <p>Search FG batch, roll, bundle, work order, or dispatch number.</p>
+              </div>
+              <div class="search-box">
+                <input id="trace-input" value="FG-BLR-7784" aria-label="Traceability search">
+                <button class="primary-button" id="trace-button">Trace</button>
+              </div>
+            </div>
+            <div class="trace-chain" id="trace-chain"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
